@@ -46,7 +46,7 @@ NEWS_API_KEY=your_newsapi_key
 ### 4. Start the Server
 
 ```bash
-npm start
+npm server.js
 ```
 
 The backend will run on `http://localhost:3000`.
