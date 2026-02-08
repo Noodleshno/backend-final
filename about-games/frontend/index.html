@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gaming</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+  <div class="nav-left">About Games</div>
+
+  <div class="nav-center">
+    <button class="tab active" onclick="showTab('news')">News</button>
+    <button class="tab" onclick="showTab('reviews')">Reviews</button>
+  </div>
+
+  <div class="nav-right">
+    <button onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="content">
+  <section id="news" class="page">
+    <h2>Games News</h2>
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Enter game name...">
+      <button onclick="searchGames()">Search News</button>
+    </div>
+
+    <div id="gamesGrid" class="games-grid"></div>
+  </section>
+
+  <section id="reviews" class="page" style="display:none;">
+    <h2>User Reviews</h2>
+
+    <div class="card review-form">
+      <input id="review-title" placeholder="Title">
+      <input id="review-game" placeholder="Game name">
+      <input id="review-rating" type="number" min="1" max="5" placeholder="Rating (1-5)">
+      <textarea id="review-content" placeholder="Write your review"></textarea>
+      <button onclick="createReview()">Post Review</button>
+    </div>
+
+    <div id="reviewsList" class="reviews-list"></div>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

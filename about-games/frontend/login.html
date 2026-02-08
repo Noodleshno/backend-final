@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login / Register</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h2 id="formTitle">Login</h2>
+
+  <input type="text" id="username" placeholder="Username" style="display:none;">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="submitForm()">Submit</button>
+  <div class="link" onclick="toggleForm()">Switch to Register</div>
+</div>
+
+<script>
+let isLogin = true;
+const API = "http://localhost:3000/api/auth";
+
+function toggleForm() {
+  isLogin = !isLogin;
+  document.getElementById("formTitle").innerText = isLogin ? "Login" : "Register";
+  document.querySelector(".link").innerText = isLogin ? "Switch to Register" : "Switch to Login";
+  document.getElementById("username").style.display = isLogin ? "none" : "block";
+}
+
+async function submitForm() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const username = document.getElementById("username").value;
+
+  const endpoint = isLogin ? "/login" : "/register";
+
+  const body = isLogin
+    ? { email, password }
+    : { username, email, password };
+
+  const res = await fetch(API + endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+
+  const data = await res.json();
+
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+    window.location.href = "index.html";
+  } else {
+    alert(data.message);
+  }
+}
+</script>
+
+</body>
+</html>
