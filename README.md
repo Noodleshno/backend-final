@@ -20,7 +20,7 @@ Frontend: HTML, CSS, JavaScript
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Noodleshno/backend-final.git
 cd about-games
 ```
 
